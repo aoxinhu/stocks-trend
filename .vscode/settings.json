@@ -1,0 +1,6 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.project.sourcePaths": [
+        "index-gather-store-service/src/main/java"
+    ]
+}
