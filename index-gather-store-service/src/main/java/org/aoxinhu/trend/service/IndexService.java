@@ -28,13 +28,14 @@ public class IndexService {
     @HystrixCommand(fallbackMethod = "third_part_not_connected")
     @Cacheable(key="'all_codes'")
     public List<Index> fetch_indexes_from_third_part(){
+        @SuppressWarnings("unchecked")
         List<Map<?,?>> temp= restTemplate.getForObject("http://127.0.0.1:8090/indexes/codes.json",List.class);
         return map2Index(temp);
     }
 
     private List<Index> map2Index(List<Map<?,?>> temp) {
         List<Index> indexes = new ArrayList<>();
-        for (Map map : temp) {
+        for (Map<?,?> map : temp) {
             String code = map.get("code").toString();
             String name = map.get("name").toString();
             Index index= new Index();

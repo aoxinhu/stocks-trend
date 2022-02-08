@@ -1,5 +1,5 @@
 package org.aoxinhu.trend.config;
-
+ 
 import java.time.Duration;
  
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -26,11 +26,11 @@ public class RedisCacheConfig {
     public void setTimeToLive(Duration timeToLive) {
         this.timeToLive = timeToLive;
     }
- 
+
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();
-
+         
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
   
         // 解决查询缓存转换异常的问题
@@ -38,7 +38,7 @@ public class RedisCacheConfig {
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.PUBLIC_ONLY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
-  
+
         // 配置序列化（解决乱码的问题）
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(timeToLive)

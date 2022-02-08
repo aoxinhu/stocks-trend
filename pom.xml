@@ -22,6 +22,10 @@
     <!-- ./mvnw spring-boot:run -pl third-part-index-data-project -->
     <module>index-gather-store-service</module>
     <!-- ./mvnw spring-boot:run -pl index-gather-store-service -->
+    <module>index-codes-service</module>
+    <!-- ./mvnw spring-boot:run -pl index-codes-service -->
+    <module>index-data-service</module>
+    <!-- ./mvnw spring-boot:run -pl index-data-service -->
   </modules>
 
   <packaging>pom</packaging>

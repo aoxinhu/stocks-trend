@@ -1,6 +1,11 @@
 /Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/pojo/Index.java
+/Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/pojo/IndexData.java
+/Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/job/IndexDataSyncJob.java
 /Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/IndexGatherStoreApplication.java
+/Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/service/IndexDataService.java
+/Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/config/QuartzConfiguration.java
 /Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/web/IndexController.java
 /Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/config/RedisCacheConfig.java
 /Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/util/SpringContextUtil.java
+/Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/web/IndexDataController.java
 /Users/aoxinhu/Desktop/stocks-trend/index-gather-store-service/src/main/java/org/aoxinhu/trend/service/IndexService.java
