@@ -12,7 +12,8 @@ import cn.hutool.core.collection.CollUtil;
 @Service
 @CacheConfig(cacheNames="indexes")
 public class IndexService {
-    private List<Index> indexes;
+
+    // private List<Index> indexes;
  
     @Cacheable(key="'all_codes'")
     public List<Index> get(){

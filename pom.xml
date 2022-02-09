@@ -18,14 +18,23 @@
   <modules>
     <module>eureka-server</module>
     <!-- ./mvnw spring-boot:run -pl eureka-server -->
+    <!-- using debug to start this service  -->
+
     <module>third-part-index-data-project</module>
     <!-- ./mvnw spring-boot:run -pl third-part-index-data-project -->
     <module>index-gather-store-service</module>
     <!-- ./mvnw spring-boot:run -pl index-gather-store-service -->
+
     <module>index-codes-service</module>
     <!-- ./mvnw spring-boot:run -pl index-codes-service -->
     <module>index-data-service</module>
     <!-- ./mvnw spring-boot:run -pl index-data-service -->
+    <module>trend-trading-backtest-service</module>
+    <!-- ./mvnw spring-boot:run -pl trend-trading-backtest-service -->
+
+    <module>index-zuul-service</module>
+    <!-- ./mvnw spring-boot:run -pl index-zuul-service -->
+    <!-- you'd better use debug to start index-zuul-service -->
   </modules>
 
   <packaging>pom</packaging>

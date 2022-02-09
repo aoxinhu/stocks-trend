@@ -1,6 +1,6 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.project.sourcePaths": [
-        "index-data-service/src/main/java"
+        "trend-trading-backtest-service/src/main/java"
     ]
 }
