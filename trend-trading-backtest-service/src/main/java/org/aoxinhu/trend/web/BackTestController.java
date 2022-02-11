@@ -1,5 +1,6 @@
 package org.aoxinhu.trend.web;
 
+import org.aoxinhu.trend.pojo.AnnualProfit;
 import org.aoxinhu.trend.pojo.IndexData;
 import org.aoxinhu.trend.pojo.Profit;
 import org.aoxinhu.trend.pojo.Trade;
@@ -32,10 +33,14 @@ public class BackTestController {
     //     return result;
     // }
 
-    @GetMapping("/simulate/{code}/{startDate}/{endDate}")
+    @GetMapping("/simulate/{code}/{ma}/{buyThreshold}/{sellThreshold}/{serviceCharge}/{startDate}/{endDate}")
     @CrossOrigin
     public Map<String,Object> backTest(
             @PathVariable("code") String code
+            ,@PathVariable("ma") int ma
+            ,@PathVariable("buyThreshold") float buyThreshold
+            ,@PathVariable("sellThreshold") float sellThreshold
+            ,@PathVariable("serviceCharge") float serviceCharge
             ,@PathVariable("startDate") String strStartDate
             ,@PathVariable("endDate") String strEndDate
     ) throws Exception {
@@ -51,10 +56,12 @@ public class BackTestController {
         result.put("indexStartDate", indexStartDate);
         result.put("indexEndDate", indexEndDate);
 
-        int ma = 20;
-        float sellRate = 0.95f;
-        float buyRate = 1.05f;
-        float serviceCharge = 0f;
+        // int ma = 20;
+        // float sellRate = 0.95f;
+        // float buyRate = 1.05f;
+        float sellRate = sellThreshold;
+        float buyRate = buyThreshold;
+        // float serviceCharge = 0f;
         Map<String,?> simulateResult= backTestService.simulate(ma,sellRate, buyRate,serviceCharge, allIndexDatas);
 
         @SuppressWarnings("unchecked")
@@ -63,6 +70,30 @@ public class BackTestController {
         List<Trade> trades = (List<Trade>) simulateResult.get("trades");
         result.put("profits", profits);
         result.put("trades", trades);
+
+        float years = backTestService.getYear(allIndexDatas);
+        float indexIncomeTotal = (allIndexDatas.get(allIndexDatas.size()-1).getClosePoint() - allIndexDatas.get(0).getClosePoint()) / allIndexDatas.get(0).getClosePoint();
+        float indexIncomeAnnual = (float) Math.pow(1+indexIncomeTotal, 1/years) - 1;
+        float trendIncomeTotal = (profits.get(profits.size()-1).getValue() - profits.get(0).getValue()) / profits.get(0).getValue();
+        float trendIncomeAnnual = (float) Math.pow(1+trendIncomeTotal, 1/years) - 1;
+        result.put("years", years);
+        result.put("indexIncomeTotal", indexIncomeTotal);
+        result.put("indexIncomeAnnual", indexIncomeAnnual);
+        result.put("trendIncomeTotal", trendIncomeTotal);
+        result.put("trendIncomeAnnual", trendIncomeAnnual);
+
+        int winCount = (Integer) simulateResult.get("winCount");
+        int lossCount = (Integer) simulateResult.get("lossCount");
+        float avgWinRate = (Float) simulateResult.get("avgWinRate");
+        float avgLossRate = (Float) simulateResult.get("avgLossRate");
+        result.put("winCount", winCount);
+        result.put("lossCount", lossCount);
+        result.put("avgWinRate", avgWinRate);
+        result.put("avgLossRate", avgLossRate);
+
+        @SuppressWarnings("unchecked")
+        List<AnnualProfit> annualProfits = (List<AnnualProfit>) simulateResult.get("annualProfits");
+        result.put("annualProfits", annualProfits);
 
         return result;
     }
