@@ -6,8 +6,8 @@ spring:
   application:
     name:  trend-trading-backtest-service
  
-feign:
-  hystrix:
-    enabled: true
+# feign:
+#   hystrix:
+#     enabled: true
 
-# feign.hystrix.enabled: true
+feign.hystrix.enabled: true
