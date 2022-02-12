@@ -1,12 +1,24 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: http://localhost:8761/eureka/
 spring:
   application:
     name: trend-trading-backtest-view
   thymeleaf:
     mode: LEGACYHTML5
     encoding: UTF-8
-    content-type: text/html
+    servlet:
+      content-type: text/html
     cache: false
+  zipkin:
+    base-url: http://localhost:9411
+# permission of visiting '/actuator/bus-refresh'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"

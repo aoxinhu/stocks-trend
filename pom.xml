@@ -35,6 +35,8 @@
 
     <module>index-zuul-service</module>
     <!-- you'd better use debug to start index-zuul-service -->
+
+    <module>index-config-server</module>
   </modules>
 
   <packaging>pom</packaging>

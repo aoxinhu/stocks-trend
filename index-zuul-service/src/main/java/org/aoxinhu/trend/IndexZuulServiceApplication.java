@@ -6,6 +6,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
+
+import brave.sampler.Sampler;
 
 @SpringBootApplication
 @EnableZuulProxy
@@ -21,6 +24,11 @@ public class IndexZuulServiceApplication {
         }
         new SpringApplicationBuilder(IndexZuulServiceApplication.class).properties("server.port=" + port).run(args);
 
+    }
+
+    @Bean
+    public Sampler defaultSampler() {
+        return Sampler.ALWAYS_SAMPLE;
     }
 
 }
