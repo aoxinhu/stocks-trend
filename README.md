@@ -1,1 +1,2 @@
-# stocks-trend(i'm still working on this project)
+# stocks-trend
+# (I'm still working on this project !!! ... )
