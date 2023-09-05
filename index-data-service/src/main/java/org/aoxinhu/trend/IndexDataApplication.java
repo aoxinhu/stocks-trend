@@ -24,7 +24,7 @@ import java.util.concurrent.TimeoutException;
 @EnableCaching
 public class IndexDataApplication {
     public static void main(String[] args) {
-        int port = 0;
+        int port = Integer.parseInt(args[0]);
         int defaultPort = 8021;
         int redisPort = 6379;
         int eurekaServerPort = 8761;
@@ -50,32 +50,32 @@ public class IndexDataApplication {
             }
         }       
          
-        if(0==port) {
-            Future<Integer> future = ThreadUtil.execAsync(() ->{
-                int p = 0;
-                System.out.printf("please enter your port in 5s, the defult port is %d %n",defaultPort);
-                Scanner scanner = new Scanner(System.in);
-                while(true) {
-                    String strPort = scanner.nextLine();
-                    if(!NumberUtil.isInteger(strPort)) {
-                        System.err.println("number only");
-                        continue;
-                    }
-                    else {
-                        p = Convert.toInt(strPort);
-                        scanner.close();
-                        break;
-                    }
-                }
-                return p;
-            });
-            try{
-                port=future.get(5,TimeUnit.SECONDS);
-            }
-            catch (InterruptedException | ExecutionException | TimeoutException e){
-                port = defaultPort;
-            }          
-        }
+        // if(0==port) {
+        //     Future<Integer> future = ThreadUtil.execAsync(() ->{
+        //         int p = 0;
+        //         System.out.printf("please enter your port in 5s, the defult port is %d %n",defaultPort);
+        //         Scanner scanner = new Scanner(System.in);
+        //         while(true) {
+        //             String strPort = scanner.nextLine();
+        //             if(!NumberUtil.isInteger(strPort)) {
+        //                 System.err.println("number only");
+        //                 continue;
+        //             }
+        //             else {
+        //                 p = Convert.toInt(strPort);
+        //                 scanner.close();
+        //                 break;
+        //             }
+        //         }
+        //         return p;
+        //     });
+        //     try{
+        //         port=future.get(5,TimeUnit.SECONDS);
+        //     }
+        //     catch (InterruptedException | ExecutionException | TimeoutException e){
+        //         port = defaultPort;
+        //     }          
+        // }
          
         if(!NetUtil.isUsableLocalPort(port)) {
             System.err.printf("port %d is occupied,unable to start %n", port );
